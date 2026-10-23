@@ -18,8 +18,13 @@
   ],
   "redirects": [
     {
+      "source": "/wholesale",
+      "destination": "/work-with-us",
+      "permanent": true
+    },
+    {
       "source": "/press",
-      "destination": "/wholesale#press",
+      "destination": "/work-with-us#press",
       "permanent": false
     }
   ]

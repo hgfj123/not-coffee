@@ -1,70 +1,10 @@
-<!doctype html>
-<html lang="en" class="no-js">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wholesale | not coffee</title>
-<meta name="description" content="Stock not coffee in your store, café, hotel or restaurant, or work with us on press and creator collaborations.">
-<link rel="canonical" href="https://www.notnotcoffee.com/wholesale">
-<meta name="theme-color" content="#1E2140">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="not coffee">
-<meta property="og:title" content="Wholesale | not coffee">
-<meta property="og:description" content="Stock not coffee in your store, café, hotel or restaurant, or work with us on press and creator collaborations.">
-<meta property="og:url" content="https://www.notnotcoffee.com/wholesale">
-<meta property="og:image" content="https://www.notnotcoffee.com/assets/img/og.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1&amp;family=Nunito:wght@900&amp;display=swap">
-<link rel="stylesheet" href="/assets/css/site.css?v=1792798574">
-
-</head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
-
-<div class="announce">Real brewed tea. Nothing else.</div>
-
-<header class="header">
-  <div class="wrap header-in">
-    <a class="wordmark" href="/" aria-label="not coffee, home"><span>not</span><span>coffee</span></a>
-    <nav class="nav" aria-label="Main">
-      <a href="/shop">Flavors</a>
-      <a href="/story">Story</a>
-      <a href="/heres-the-tea">Here's the Tea</a>
-      <a href="/wholesale" aria-current="page">Wholesale</a>
-    </nav>
-    <div class="header-actions">
-      <a class="btn btn-sm btn-stores" href="/where-to-buy">Find us in stores</a>
-      <button type="button" class="icon-btn" data-open-bag aria-label="Bag, 0 items" aria-controls="bag">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
-        <span class="bag-count" data-bag-count hidden>0</span>
-      </button>
-      <button type="button" class="icon-btn menu-btn" data-open-menu aria-label="Open menu" aria-controls="mobile-nav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
-      </button>
-    </div>
-  </div>
-</header>
-
-<div class="mobile-nav" id="mobile-nav" aria-hidden="true" role="dialog" aria-label="Menu">
-  <div class="mobile-nav-top">
-    <a class="wordmark" href="/" style="font-size:21px" aria-label="not coffee, home"><span>not</span><span>coffee</span></a>
-    <button type="button" class="icon-btn" data-close-menu aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-  </div>
-  <nav aria-label="Mobile">
-    <a href="/shop">Flavors</a>
-    <a href="/story">Story</a>
-    <a href="/heres-the-tea">Here's the Tea</a>
-    <a href="/wholesale">Wholesale</a>
-  </nav>
-  <a class="btn" href="/where-to-buy">Find us in stores</a>
-</div>
-
-<main id="main">
+<!--
+title: Work with us | not coffee
+description: Stock not coffee in your store, café, hotel or restaurant, or work with us on press and creator collaborations.
+nav: wholesale
+-->
 <section class="wrap-narrow page-head">
-  <p class="eyebrow">Wholesale</p>
+  <p class="eyebrow">Work with us · Wholesale</p>
   <h1 class="h1" style="margin-top:16px">Stock <em>not coffee.</em></h1>
   <p class="lede">Real brewed tea that sells itself in the cooler and looks right on the table. Tell us about your business and a person will get back to you.</p>
   <p class="small" style="margin-top:18px">Press or a creator? <a class="link" href="#press">Jump to press &amp; creators</a></p>
@@ -91,7 +31,7 @@
         <li><span>Made</span><span>Brewed &amp; canned in the USA</span></li>
       </ul>
     </div>
-    <form class="form" style="flex:1 1 480px" data-mailto="hello@notcoffee.com" data-subject="Wholesale enquiry">
+    <form class="form" style="flex:1 1 480px" data-mailto="{{email}}" data-subject="Wholesale enquiry">
       <div class="field"><label for="w-biz">Business name</label><input id="w-biz" name="business" data-label="Business" required autocomplete="organization"></div>
       <div class="field"><label for="w-name">Your name</label><input id="w-name" name="name" data-label="Name" required autocomplete="name"></div>
       <div class="field"><label for="w-email">Email</label><input id="w-email" name="email" data-label="Email" type="email" required autocomplete="email"></div>
@@ -125,13 +65,13 @@
       <p class="eyebrow">For press</p>
       <h2 class="h3">Writing about <em>not coffee?</em></h2>
       <p class="body">Founder interviews, samples, the story behind the brew, and high-resolution images. Everything you need is on this page, and anything that isn't is one email away.</p>
-      <p class="small">Press: <a class="link" href="mailto:hello@notcoffee.com?subject=Press%20enquiry">hello@notcoffee.com</a></p>
+      <p class="small">Press: <a class="link" href="mailto:{{email}}?subject=Press%20enquiry">{{email}}</a></p>
     </div>
     <div class="who reveal">
       <p class="eyebrow">For creators</p>
       <h2 class="h3">Make something <em>with us.</em></h2>
       <p class="body">Product seeding, collaborations and paid partnerships with creators whose audience would actually drink it. Cooking, travel, design, slow mornings, long tables. Tag us and we'll see it.</p>
-      <p class="small">Follow and tag: <a class="link" href="https://www.instagram.com/notcffee/" rel="noopener">@notcffee</a></p>
+      <p class="small">Follow and tag: <a class="link" href="{{instagram}}" rel="noopener">@notcffee</a></p>
     </div>
   </div>
 </section>
@@ -173,7 +113,7 @@
 
     <div style="flex:1 1 480px;display:flex;flex-direction:column;gap:24px">
       <h2 class="h2">Get in touch</h2>
-      <form class="form" data-mailto="hello@notcoffee.com" data-subject="Press &amp; creators enquiry">
+      <form class="form" data-mailto="{{email}}" data-subject="Press &amp; creators enquiry">
         <div class="field"><label for="p-name">Your name</label><input id="p-name" name="name" data-label="Name" required autocomplete="name"></div>
         <div class="field"><label for="p-email">Email</label><input id="p-email" name="email" data-label="Email" type="email" required autocomplete="email"></div>
         <div class="field"><label for="p-role">I'm a</label>
@@ -192,59 +132,3 @@
     </div>
   </div>
 </section>
-
-</main>
-
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer-top">
-      <div>
-        <a class="wordmark" href="/" aria-label="not coffee, home"><span>not</span><span>coffee</span></a>
-        <p class="footer-tag">Real brewed tea. <em>Nothing else.</em></p>
-      </div>
-      <div class="footer-cols">
-        <div class="footer-col"><h2>Shop</h2>
-          <a href="/flavors/jasmine-rose">Jasmine Rose</a>
-          <a href="/flavors/moroccan-mint">Moroccan Mint</a>
-          <a href="/flavors/earl-grey-cardamom">Earl Grey Cardamom</a>
-        </div>
-        <div class="footer-col"><h2>Company</h2>
-          <a href="/story">Story</a>
-          <a href="/heres-the-tea">Here's the Tea</a>
-          <a href="/where-to-buy">Where to buy</a>
-          <a href="/wholesale">Wholesale</a>
-          <a href="/wholesale#press">Press &amp; creators</a>
-        </div>
-        <div class="footer-col"><h2>Follow</h2>
-          <a href="https://www.instagram.com/notcffee/" rel="noopener">Instagram</a>
-          <a href="https://www.tiktok.com/@notcffee" rel="noopener">TikTok</a>
-          <a href="mailto:hello@notcoffee.com">hello@notcoffee.com</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Not Not Coffee, LLC · Brewed &amp; canned in the USA</span>
-      <nav aria-label="Legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/accessibility">Accessibility</a></nav>
-    </div>
-  </div>
-</footer>
-
-<div class="scrim" id="scrim"></div>
-<aside class="drawer" id="bag" aria-hidden="true" aria-label="Your bag" role="dialog">
-  <div class="drawer-head">
-    <h2>Your bag</h2>
-    <button type="button" class="icon-btn" data-close-bag aria-label="Close bag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-  </div>
-  <div class="drawer-body" id="bag-body"></div>
-  <div class="drawer-foot" id="bag-foot" hidden>
-    <div class="drawer-total"><span>Subtotal</span><span id="bag-total"></span></div>
-    <button type="button" class="btn" id="checkout" disabled>Checkout</button>
-    <p class="small" id="checkout-note" style="text-align:center"></p>
-  </div>
-</aside>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<script src="/assets/js/products.js?v=1792798574"></script>
-<script src="/assets/js/site.js?v=1792798574"></script>
-</body>
-</html>
