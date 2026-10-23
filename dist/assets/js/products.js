@@ -19,12 +19,6 @@ window.NC_PRODUCTS = {
    "pack": "6-pack \u00b7 12 fl oz cans",
    "price": null,
    "thumb": "assets/img/can-earl-grey-cardamom.webp"
-  },
-  "variety-pack": {
-   "name": "The Variety Pack",
-   "pack": "All three flavors \u00b7 12 fl oz cans",
-   "price": null,
-   "thumb": "assets/img/can-jasmine-rose.webp"
   }
  }
 };

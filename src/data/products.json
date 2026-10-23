@@ -47,13 +47,5 @@
       "packLabel": "6-pack · 12 fl oz cans",
       "colors": { "wash": "#DDE2E5", "deep": "#C3CBD0" }
     }
-  ],
-  "variety": {
-    "slug": "variety-pack",
-    "name": "The Variety Pack",
-    "tagline": "All three, one box.",
-    "description": "Jasmine Rose, Moroccan Mint and Earl Grey Cardamom in one box. The easiest way to find your favorite, or to stop choosing.",
-    "price": null,
-    "packLabel": "All three flavors · 12 fl oz cans"
-  }
+  ]
 }

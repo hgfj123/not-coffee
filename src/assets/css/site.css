@@ -155,6 +155,9 @@ em { font-style: italic; }
 /* ---------- product tiles (Kith) ---------- */
 .grid-tiles { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+.grid-2 .tile-media { aspect-ratio: 3 / 2; }
+.grid-2 .tile-media img.can { height: 80%; }
 .tile { text-decoration: none; display: flex; flex-direction: column; gap: 12px; color: var(--ink); }
 .tile:hover { color: var(--ink); }
 .tile-media { background: var(--stone); aspect-ratio: 4 / 5; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
@@ -375,3 +378,16 @@ body.locked { overflow: hidden; }
 
 /* ---------- 404 ---------- */
 .notfound { min-height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 22px; padding: 80px 16px; }
+
+/* ---------- press ---------- */
+.two-up { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); }
+.two-up .who { padding: clamp(28px, 4vw, 48px); gap: 16px; }
+.kit { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 760px) { .kit { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.kit-item { background: #fff; padding: 20px 20px 18px; display: flex; flex-direction: column; gap: 6px; text-decoration: none; }
+.kit-media { height: clamp(160px, 18vw, 240px); display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+.kit-media img { height: 86%; width: auto; filter: var(--shadow-can); transition: transform .5s var(--ease); }
+.kit-media img.kit-bot { height: 92%; width: auto; max-width: 92%; object-fit: contain; filter: none; }
+.kit-item:hover .kit-media img { transform: translateY(-4px); }
+.kit-name { font-family: var(--serif); font-size: 20px; line-height: 1.2; }
+.kit-item .small { text-decoration: underline; text-underline-offset: 4px; }

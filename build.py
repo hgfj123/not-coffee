@@ -29,7 +29,6 @@ CONFIG = {
 
 DATA = json.loads((SRC / "data/products.json").read_text())
 FLAVORS = DATA["flavors"]
-VARIETY = DATA["variety"]
 
 
 def esc(s):
@@ -54,20 +53,10 @@ def placeholder(text):
 
 
 # ---------------------------------------------------------------- snippets
-def trio_html(alt):
-    return (
-        '<div class="trio">'
-        f'<img src="{can("moroccan-mint")}" alt="" width="359" height="989" loading="lazy">'
-        f'<img src="{can("jasmine-rose")}" alt="{esc(alt)}" width="359" height="989" loading="lazy">'
-        f'<img src="{can("earl-grey-cardamom")}" alt="" width="359" height="989" loading="lazy">'
-        "</div>"
-    )
-
-
-def flavor_tile(f, square=False, kind="pack"):
+def flavor_tile(f, square=False):
     sq = " square" if square else ""
     return f"""
-<a class="tile reveal" href="/flavors/{f['slug']}" data-kind="{kind}">
+<a class="tile reveal" href="/flavors/{f['slug']}">
   <div class="tile-media{sq}">
     <img class="bot bot-a" src="{bot(f['slug'])}" alt="" loading="lazy">
     <img class="bot bot-b" src="{bot(f['slug'])}" alt="" loading="lazy">
@@ -75,16 +64,6 @@ def flavor_tile(f, square=False, kind="pack"):
   </div>
   <div class="tile-row"><span class="tile-name">{esc(f['name'])}</span><span class="tile-price">{price_text(f['price'])}</span></div>
   <div class="tile-sub">{esc(f['tagline'])}</div>
-</a>"""
-
-
-def variety_tile(square=False):
-    sq = " square" if square else ""
-    return f"""
-<a class="tile reveal" href="/variety-pack" data-kind="variety">
-  <div class="tile-media{sq}">{trio_html("Variety pack: Jasmine Rose, Moroccan Mint and Earl Grey Cardamom")}</div>
-  <div class="tile-row"><span class="tile-name">{esc(VARIETY['name'])}</span><span class="tile-price">{price_text(VARIETY['price'])}</span></div>
-  <div class="tile-sub">{esc(VARIETY['tagline'])}</div>
 </a>"""
 
 
@@ -111,7 +90,7 @@ SIGNUP = """
 def snippets():
     return {
         "tiles_lineup": "".join(flavor_tile(f) for f in FLAVORS),
-        "tiles_shop": "".join(flavor_tile(f, square=True) for f in FLAVORS) + variety_tile(square=True),
+        "tiles_shop": "".join(flavor_tile(f, square=True) for f in FLAVORS),
         "signup": SIGNUP,
         "bot_cards": "".join(
             f'<a class="bot-card reveal" href="/flavors/{f["slug"]}"><img src="{bot(f["slug"])}" alt="Hand-drawn {esc(f["name"].lower())} botanical" loading="lazy"><span>{esc(f["name"])}</span></a>'
@@ -119,8 +98,7 @@ def snippets():
         ),
         "botanical_still": '<div class="botanical-still">' + "".join(
             f'<img src="{bot(f["slug"])}" alt="" loading="lazy">' for f in FLAVORS) + "</div>",
-        "price_jasmine": price_text(FLAVORS[0]["price"]),
-        "caffeine_any": next((f["caffeine"] for f in FLAVORS if f["caffeine"]), None) or placeholder("mg per can"),
+                "caffeine_any": next((f["caffeine"] for f in FLAVORS if f["caffeine"]), None) or placeholder("mg per can"),
     }
 
 
@@ -143,65 +121,34 @@ SHIP_ROWS = spec_rows([
 ])
 
 
-def product_page(item, is_variety=False):
+def product_page(item):
     tpl = (SRC / "partials/product.html").read_text()
-    if is_variety:
-        slug, wash = item["slug"], "#EFEEEA"
-        media = trio_html("Variety pack: Jasmine Rose, Moroccan Mint and Earl Grey Cardamom")
-        floaters = "".join(
-            f'<img class="floater {c}" src="{bot(f["slug"])}" alt="" aria-hidden="true">'
-            for c, f in zip(["f1", "f2", "f3", "f4"], FLAVORS + [FLAVORS[0]]))
-        heading = f'The Variety<br><em>Pack</em>'
-        notes = " · ".join(f["name"] for f in FLAVORS)
-        caffeine = next((f["caffeine"] for f in FLAVORS if f["caffeine"]), None) or placeholder("mg per can")
-        tea_rows = [("In the box", "Jasmine Rose, Moroccan Mint, Earl Grey Cardamom"), ("Sweetener", "None, unsweetened"),
-                    ("Calories", "0"), ("Caffeine", caffeine), ("Brew", "Brewed, never from concentrate"),
-                    ("Can", "12 fl oz slim"), ("Made", "Brewed &amp; canned in the USA")]
-        ag = placeholder("A line from AG on sharing all three")
-        crumbs_name = item["name"]
-        others = FLAVORS
-        title = f"The Variety Pack | not coffee"
-        desc = item["description"]
-    else:
-        slug, wash = item["slug"], item["colors"]["wash"]
-        media = f'<img src="{can(slug)}" alt="{esc(item["name"])} can" width="359" height="989" fetchpriority="high">'
-        floaters = "".join(
-            f'<img class="floater {c}" src="{bot(slug)}" alt="" aria-hidden="true">' for c in ["f1", "f2", "f3", "f4"])
-        heading = f'{esc(item["first"])}<br><em>{esc(item["second"])}</em>'
-        notes = " · ".join(item["notes"])
-        caffeine = esc(item["caffeine"]) if item["caffeine"] else placeholder("mg per can")
-        tea_rows = [("The tea", esc(item["tea"])), ("Sweetener", "None, unsweetened"), ("Calories", "0"),
-                    ("Caffeine", caffeine), ("Brew", "Brewed, never from concentrate"),
-                    ("Can", "12 fl oz slim"), ("Made", "Brewed &amp; canned in the USA")]
-        ag = esc(item["agNote"]) if item["agNote"] else placeholder(
-            "A line from AG about this one: where it was poured, who poured it, what it tastes like at home")
-        crumbs_name = item["name"]
-        others = [f for f in FLAVORS if f["slug"] != slug]
-        title = f"{item['name']} Cold Tea | not coffee"
-        desc = f"{item['name']}: {item['description']}"
-
+    slug = item["slug"]
+    caffeine = esc(item["caffeine"]) if item["caffeine"] else placeholder("mg per can")
+    tea_rows = [("The tea", esc(item["tea"])), ("Sweetener", "None, unsweetened"), ("Calories", "0"),
+                ("Caffeine", caffeine), ("Brew", "Brewed, never from concentrate"),
+                ("Can", "12 fl oz slim"), ("Made", "Brewed &amp; canned in the USA")]
+    ag = esc(item["agNote"]) if item["agNote"] else placeholder(
+        "A line from AG about this one: where it was poured, who poured it, what it tastes like at home")
     cur = ' aria-current="page"'
-    switch = "".join(
-        '<a href="/flavors/%s"%s>%s</a>' % (f["slug"], cur if (not is_variety and f["slug"] == slug) else "", esc(f["name"]))
-        for f in FLAVORS) + '<a href="/variety-pack"%s>Variety</a>' % (cur if is_variety else "")
-    other_tiles = "".join(flavor_tile(f) for f in others)
-    if not is_variety:
-        other_tiles += variety_tile()
-
+    switch = "".join('<a href="/flavors/%s"%s>%s</a>' % (f["slug"], cur if f["slug"] == slug else "", esc(f["name"]))
+                     for f in FLAVORS)
     rep = {
-        "wash": wash, "slug": slug, "floaters": floaters, "switcher": switch,
-        "crumb": esc(crumbs_name), "heading": heading, "notes": esc(notes),
-        "desc": esc(item["description"]), "media": media,
-        "pack": esc(item["packLabel"]),
-        "price": price_text(item["price"]),
+        "slug": slug,
+        "floaters": "".join(f'<img class="floater {c}" src="{bot(slug)}" alt="" aria-hidden="true">'
+                            for c in ["f1", "f2", "f3", "f4"]),
+        "switcher": switch, "crumb": esc(item["name"]),
+        "heading": f'{esc(item["first"])}<br><em>{esc(item["second"])}</em>',
+        "notes": esc(" · ".join(item["notes"])), "desc": esc(item["description"]),
+        "media": f'<img src="{can(slug)}" alt="{esc(item["name"])} can" width="359" height="989" fetchpriority="high">',
+        "pack": esc(item["packLabel"]), "price": price_text(item["price"]),
         "price_cls": "" if isinstance(item["price"], (int, float)) else " tbc",
         "tea_rows": spec_rows(tea_rows), "label_rows": label_rows(caffeine), "ship_rows": SHIP_ROWS,
-        "ag": ag, "other_title": "Also in the lineup" if is_variety else "The rest of the lineup",
-        "other_tiles": other_tiles,
+        "ag": ag, "other_tiles": "".join(flavor_tile(f) for f in FLAVORS if f["slug"] != slug),
     }
     for k, v in rep.items():
         tpl = tpl.replace("{{" + k + "}}", v)
-    return tpl, title, desc
+    return tpl, f"{item['name']} Cold Tea | not coffee", f"{item['name']}: {item['description']}"
 
 
 def products_js():
@@ -209,8 +156,6 @@ def products_js():
     for f in FLAVORS:
         m[f["slug"]] = {"name": f["name"], "pack": f["packLabel"], "price": f["price"],
                         "thumb": can(f["slug"]).lstrip("/")}
-    m[VARIETY["slug"]] = {"name": VARIETY["name"], "pack": VARIETY["packLabel"], "price": VARIETY["price"],
-                          "thumb": can("jasmine-rose").lstrip("/")}
     return "/* Generated by build.py from src/data/products.json. Do not edit. */\nwindow.NC_PRODUCTS = " + json.dumps(
         {"currency": DATA["currency"], "products": m}, indent=1) + ";\n"
 
@@ -239,7 +184,7 @@ def render(content, title, description, path, nav=None, head_extra=""):
         "title": esc(title), "description": esc(description), "path": path,
         "content": content, "head_extra": head_extra, "version": VERSION,
     })
-    for key in ["shop", "story", "faq", "wholesale"]:
+    for key in ["shop", "story", "faq", "wholesale", "press"]:
         reps["cur_" + key] = ' aria-current="page"' if nav == key else ""
     # content first so tokens inside content get filled too
     page = page.replace("{{content}}", content)
@@ -301,9 +246,6 @@ def main():
         path = f"/flavors/{f['slug']}"
         write(path, render(body, title, desc, path, "shop", f'<style>:root{{--wash:{f["colors"]["wash"]}}}</style>'))
         pages.append(path)
-    body, title, desc = product_page(VARIETY, is_variety=True)
-    write("/variety-pack", render(body, title, desc, "/variety-pack", "shop"))
-    pages.append("/variety-pack")
 
     # sitemap + robots
     urls = "".join(f"<url><loc>{CONFIG['site_url']}{p if p != '/' else ''}/</loc></url>".replace("//</loc>", "/</loc>")
