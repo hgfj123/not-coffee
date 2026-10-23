@@ -1,0 +1,52 @@
+<!--
+title: Wholesale | not coffee
+description: Stock not coffee in your store, café, hotel or restaurant. Tell us about your business and we'll be in touch.
+nav: wholesale
+-->
+<section class="wrap-narrow page-head">
+  <p class="eyebrow">Wholesale</p>
+  <h1 class="h1" style="margin-top:16px">Stock <em>not coffee.</em></h1>
+  <p class="lede">Real brewed tea that sells itself in the cooler and looks right on the table. Tell us about your business and a person will get back to you.</p>
+</section>
+
+<section class="wrap-narrow" style="padding-bottom:clamp(56px,7vw,96px)">
+  <div class="who-grid">
+    <div class="who reveal"><h2 class="h3">Retail</h2><p class="body">Grocery, convenience and specialty stores.</p></div>
+    <div class="who reveal"><h2 class="h3">Cafés &amp; restaurants</h2><p class="body">A cold, unsweetened option worth putting on the menu.</p></div>
+    <div class="who reveal"><h2 class="h3">Hotels &amp; hospitality</h2><p class="body">Minibars, lounges, events and the places guests remember.</p></div>
+    <div class="who reveal"><h2 class="h3">Distributors</h2><p class="body">Regional and national partners. Let's talk territories.</p></div>
+  </div>
+</section>
+
+<section class="wrap-narrow" style="padding-bottom:clamp(80px,9vw,128px)">
+  <div class="split" style="align-items:flex-start">
+    <div style="display:flex;flex-direction:column;gap:18px;flex:1 1 320px">
+      <h2 class="h2">The details</h2>
+      <ul class="specs" style="flex:none">
+        <li><span>Case</span><span class="tbc">[Cans per case]</span></li>
+        <li><span>Minimum order</span><span class="tbc">[Minimum]</span></li>
+        <li><span>Pricing</span><span>Shared on request</span></li>
+        <li><span>Flavors</span><span>Jasmine Rose, Moroccan Mint, Earl Grey Cardamom</span></li>
+        <li><span>Made</span><span>Brewed &amp; canned in the USA</span></li>
+      </ul>
+    </div>
+    <form class="form" style="flex:1 1 480px" data-mailto="{{email}}" data-subject="Wholesale enquiry">
+      <div class="field"><label for="w-biz">Business name</label><input id="w-biz" name="business" data-label="Business" required autocomplete="organization"></div>
+      <div class="field"><label for="w-name">Your name</label><input id="w-name" name="name" data-label="Name" required autocomplete="name"></div>
+      <div class="field"><label for="w-email">Email</label><input id="w-email" name="email" data-label="Email" type="email" required autocomplete="email"></div>
+      <div class="field"><label for="w-phone">Phone</label><input id="w-phone" name="phone" data-label="Phone" type="tel" autocomplete="tel"></div>
+      <div class="field"><label for="w-city">City &amp; state</label><input id="w-city" name="city" data-label="City" required></div>
+      <div class="field"><label for="w-type">Type of business</label>
+        <select id="w-type" name="type" data-label="Type" required>
+          <option value="">Choose one</option>
+          <option>Retail store</option><option>Café or restaurant</option><option>Hotel or hospitality</option><option>Distributor</option><option>Other</option>
+        </select>
+      </div>
+      <div class="field full"><label for="w-msg">Anything else?</label><textarea id="w-msg" name="message" data-label="Message" placeholder="Locations, expected volume, timing…"></textarea></div>
+      <div class="full" style="display:flex;flex-wrap:wrap;align-items:center;gap:18px">
+        <button class="btn" type="submit">Send enquiry</button>
+        <p class="form-note" aria-live="polite"></p>
+      </div>
+    </form>
+  </div>
+</section>

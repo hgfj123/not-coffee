@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+<link rel="canonical" href="{{site_url}}{{path}}">
+<meta name="theme-color" content="#1E2140">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="not coffee">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:url" content="{{site_url}}{{path}}">
+<meta property="og:image" content="{{site_url}}/assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1&amp;family=Nunito:wght@900&amp;display=swap">
+<link rel="stylesheet" href="/assets/css/site.css?v={{version}}">
+{{head_extra}}
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="announce">Real brewed tea. Nothing else.</div>
+
+<header class="header">
+  <div class="wrap header-in">
+    <a class="wordmark" href="/" aria-label="not coffee, home"><span>not</span><span>coffee</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="/shop"{{cur_shop}}>Flavors</a>
+      <a href="/story"{{cur_story}}>Story</a>
+      <a href="/heres-the-tea"{{cur_faq}}>Here's the Tea</a>
+      <a href="/wholesale"{{cur_wholesale}}>Wholesale</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-sm btn-stores" href="/where-to-buy">Find us in stores</a>
+      <button type="button" class="icon-btn" data-open-bag aria-label="Bag, 0 items" aria-controls="bag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="bag-count" data-bag-count hidden>0</span>
+      </button>
+      <button type="button" class="icon-btn menu-btn" data-open-menu aria-label="Open menu" aria-controls="mobile-nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobile-nav" aria-hidden="true" role="dialog" aria-label="Menu">
+  <div class="mobile-nav-top">
+    <a class="wordmark" href="/" style="font-size:21px" aria-label="not coffee, home"><span>not</span><span>coffee</span></a>
+    <button type="button" class="icon-btn" data-close-menu aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <nav aria-label="Mobile">
+    <a href="/shop">Flavors</a>
+    <a href="/story">Story</a>
+    <a href="/heres-the-tea">Here's the Tea</a>
+    <a href="/wholesale">Wholesale</a>
+  </nav>
+  <a class="btn" href="/where-to-buy">Find us in stores</a>
+</div>
+
+<main id="main">
+{{content}}
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a class="wordmark" href="/" aria-label="not coffee, home"><span>not</span><span>coffee</span></a>
+        <p class="footer-tag">Real brewed tea. <em>Nothing else.</em></p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col"><h2>Shop</h2>
+          <a href="/flavors/jasmine-rose">Jasmine Rose</a>
+          <a href="/flavors/moroccan-mint">Moroccan Mint</a>
+          <a href="/flavors/earl-grey-cardamom">Earl Grey Cardamom</a>
+          <a href="/variety-pack">Variety Pack</a>
+        </div>
+        <div class="footer-col"><h2>Company</h2>
+          <a href="/story">Story</a>
+          <a href="/heres-the-tea">Here's the Tea</a>
+          <a href="/where-to-buy">Where to buy</a>
+          <a href="/wholesale">Wholesale</a>
+          <a href="mailto:{{email}}?subject=Press%20%26%20creators">Press &amp; creators</a>
+        </div>
+        <div class="footer-col"><h2>Follow</h2>
+          <a href="{{instagram}}" rel="noopener">Instagram</a>
+          <a href="{{tiktok}}" rel="noopener">TikTok</a>
+          <a href="mailto:{{email}}">{{email}}</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© {{year}} Not Not Coffee, LLC · Brewed &amp; canned in the USA</span>
+      <nav aria-label="Legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/accessibility">Accessibility</a></nav>
+    </div>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="bag" aria-hidden="true" aria-label="Your bag" role="dialog">
+  <div class="drawer-head">
+    <h2>Your bag</h2>
+    <button type="button" class="icon-btn" data-close-bag aria-label="Close bag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="drawer-body" id="bag-body"></div>
+  <div class="drawer-foot" id="bag-foot" hidden>
+    <div class="drawer-total"><span>Subtotal</span><span id="bag-total"></span></div>
+    <button type="button" class="btn" id="checkout" disabled>Checkout</button>
+    <p class="small" id="checkout-note" style="text-align:center"></p>
+  </div>
+</aside>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="/assets/js/products.js?v={{version}}"></script>
+<script src="/assets/js/site.js?v={{version}}"></script>
+</body>
+</html>

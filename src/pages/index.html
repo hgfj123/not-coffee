@@ -1,0 +1,94 @@
+<!--
+path: /
+title: not coffee | Real brewed tea. Nothing else.
+description: Unsweetened cold tea brewed from real leaves. Zero calories, no shortcuts. Jasmine Rose, Moroccan Mint and Earl Grey Cardamom in a 12 oz can.
+-->
+<section class="hero" aria-labelledby="hero-h">
+  <div class="hero-not" aria-hidden="true">NOT</div>
+  <div class="hero-copy">
+    <p class="eyebrow">Unsweetened cold tea · 12 fl oz</p>
+    <h1 class="display" id="hero-h">Real brewed tea.<br><em>Nothing else.</em></h1>
+    <p class="lede">Brewed from real leaves, the way it has always been poured at home. No sugar, no shortcuts, zero calories.</p>
+    <div class="hero-ctas">
+      <a class="btn" href="/shop">Shop the lineup</a>
+      <a class="link" href="/where-to-buy">Find a store</a>
+    </div>
+  </div>
+  <div class="hero-cans">
+    <img src="/assets/img/can-moroccan-mint.webp" alt="Moroccan Mint can" width="359" height="989" fetchpriority="high">
+    <img src="/assets/img/can-jasmine-rose.webp" alt="Jasmine Rose can" width="359" height="989" fetchpriority="high">
+    <img src="/assets/img/can-earl-grey-cardamom.webp" alt="Earl Grey Cardamom can" width="359" height="989" fetchpriority="high">
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:clamp(64px,8vw,112px)" aria-labelledby="lineup-h">
+  <div class="section-head">
+    <h2 class="h2" id="lineup-h">The lineup</h2>
+    <a class="link" href="/shop">Shop all</a>
+  </div>
+  <div class="grid-tiles grid-3">{{tiles_lineup}}</div>
+</section>
+
+<section class="wrap section">
+  <div class="quote-row reveal">
+    <img src="/assets/img/botanical-jasmine-rose.webp" alt="Hand-drawn rose and jasmine" loading="lazy">
+    <figure class="quote">
+      <blockquote>“In my culture, we share tea with the people we love. <em>Here's to you.</em>”</blockquote>
+      <figcaption><span class="sig">— AG</span><a class="link" href="/story">Read our story</a></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="bg-ink not-band" aria-label="What's not in it">
+  <div class="wrap section not-band-in">
+    <div class="not-list reveal">
+      <div><span>Not</span> sweetened.</div>
+      <div><span>Not</span> from concentrate.</div>
+      <div><span>Not</span> a miracle cure.</div>
+      <div><em>Just tea, brewed properly.</em></div>
+    </div>
+    <p>We would rather publish three claims we can prove than eight we cannot. So that is the list. It is short on purpose.</p>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:clamp(72px,9vw,136px)" aria-labelledby="where-h">
+  <div class="section-head">
+    <h2 class="h2" id="where-h">Wherever you are.</h2>
+    <p class="body">The corner-store cooler or the long table after dinner. Same can, same tea, same calm.</p>
+  </div>
+  <div class="photo-pair">
+    <figure class="photo reveal">
+      <!-- PHOTO: replace with the final cooler shot when available -->
+      <img src="/assets/img/photo-cooler.webp" alt="A store cooler at night, stocked with not coffee in all three flavors" loading="lazy">
+    </figure>
+    <figure class="photo reveal">
+      <!-- PHOTO: replace with the linen-table shot when available -->
+      <div class="studio">
+        <div class="studio-light" aria-hidden="true"></div>
+        <img class="bot bot-a" src="/assets/img/botanical-jasmine-rose.webp" alt="" loading="lazy">
+        <img class="bot bot-b" src="/assets/img/botanical-jasmine-rose.webp" alt="" loading="lazy">
+        <img class="can" src="/assets/img/can-jasmine-rose.webp" alt="Jasmine Rose can in late afternoon light" loading="lazy">
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="split">
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <h2 class="h2">Read the label.<br><em>It's short.</em></h2>
+      <p class="lede" style="max-width:440px">A column of zeros, because it is just brewed tea. Nothing added to make it easier to like.</p>
+      <a class="link" href="/heres-the-tea">Here's the Tea</a>
+    </div>
+    <div class="label-card reveal">
+      <span class="eyebrow">Per 12 fl oz can</span>
+      <div class="label-row"><span>Calories</span><span>0</span></div>
+      <div class="label-row"><span>Total sugars</span><span>0g</span></div>
+      <div class="label-row"><span>Sodium</span><span>20mg</span></div>
+      <div class="label-row"><span>Potassium</span><span>40mg</span></div>
+      <div class="label-row"><span>Caffeine</span><span>{{caffeine_any}}</span></div>
+    </div>
+  </div>
+</section>
+
+{{signup}}

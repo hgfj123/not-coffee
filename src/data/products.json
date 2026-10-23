@@ -1,0 +1,59 @@
+{
+  "_readme": "Single source of truth for products. Fill in price (number, e.g. 24.99) and caffeine (e.g. \"45mg\") when final, then run `python3 build.py`. A null price shows 'Price coming soon' everywhere.",
+  "currency": "USD",
+  "flavors": [
+    {
+      "slug": "jasmine-rose",
+      "name": "Jasmine Rose",
+      "first": "Jasmine",
+      "second": "Rose",
+      "tagline": "Floral, delicate, barely there in the best way.",
+      "notes": ["Jasmine blossom", "Rose petal", "Soft green tea"],
+      "description": "Green tea laid over jasmine blossom, then finished with rose. The most delicate can in the lineup: floral, and barely there in the best way.",
+      "agNote": null,
+      "tea": "Green tea, jasmine, rose",
+      "caffeine": null,
+      "price": null,
+      "packLabel": "6-pack · 12 fl oz cans",
+      "colors": { "wash": "#F5DCE5", "deep": "#E9BFCF" }
+    },
+    {
+      "slug": "moroccan-mint",
+      "name": "Moroccan Mint",
+      "first": "Moroccan",
+      "second": "Mint",
+      "tagline": "Sharp, green, and genuinely cooling.",
+      "notes": ["Spearmint", "Gunpowder green", "Cool finish"],
+      "description": "Gunpowder green tea and spearmint, the way it is served across North Africa, except nobody stirred four spoons of sugar into it. Bracing, clean, and the most refreshing thing in the fridge.",
+      "agNote": null,
+      "tea": "Gunpowder green tea, spearmint",
+      "caffeine": null,
+      "price": null,
+      "packLabel": "6-pack · 12 fl oz cans",
+      "colors": { "wash": "#D8ECD4", "deep": "#B9DDB3" }
+    },
+    {
+      "slug": "earl-grey-cardamom",
+      "name": "Earl Grey Cardamom",
+      "first": "Earl Grey",
+      "second": "Cardamom",
+      "tagline": "The one that actually replaces your coffee.",
+      "notes": ["Bergamot", "Cardamom", "Black tea"],
+      "description": "The one that actually replaces your coffee. Earl Grey's bergamot, warmed through with cardamom, brewed and canned cold.",
+      "agNote": null,
+      "tea": "Earl Grey tea, bergamot, cardamom",
+      "caffeine": null,
+      "price": null,
+      "packLabel": "6-pack · 12 fl oz cans",
+      "colors": { "wash": "#DDE2E5", "deep": "#C3CBD0" }
+    }
+  ],
+  "variety": {
+    "slug": "variety-pack",
+    "name": "The Variety Pack",
+    "tagline": "All three, one box.",
+    "description": "Jasmine Rose, Moroccan Mint and Earl Grey Cardamom in one box. The easiest way to find your favorite, or to stop choosing.",
+    "price": null,
+    "packLabel": "All three flavors · 12 fl oz cans"
+  }
+}
