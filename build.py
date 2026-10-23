@@ -184,7 +184,7 @@ def render(content, title, description, path, nav=None, head_extra=""):
         "title": esc(title), "description": esc(description), "path": path,
         "content": content, "head_extra": head_extra, "version": VERSION,
     })
-    for key in ["shop", "story", "faq", "wholesale", "press"]:
+    for key in ["shop", "story", "faq", "wholesale"]:
         reps["cur_" + key] = ' aria-current="page"' if nav == key else ""
     # content first so tokens inside content get filled too
     page = page.replace("{{content}}", content)
