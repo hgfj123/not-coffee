@@ -127,7 +127,7 @@ def product_page(item):
     caffeine = esc(item["caffeine"]) if item["caffeine"] else placeholder("mg per can")
     tea_rows = [("The tea", esc(item["tea"])), ("Sweetener", "None, unsweetened"), ("Calories", "0"),
                 ("Caffeine", caffeine), ("Brew", "Brewed, never from concentrate"),
-                ("Can", "12 fl oz slim"), ("Made", "Brewed &amp; canned in the USA")]
+                ("Can", "12 fl oz slim"), ("Made", "Brewed &amp; Canned in the USA")]
     ag = esc(item["agNote"]) if item["agNote"] else placeholder(
         "A line from AG about this one: where it was poured, who poured it, what it tastes like at home")
     cur = ' aria-current="page"'
