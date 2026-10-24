@@ -299,7 +299,8 @@ em { font-style: italic; }
 .specs li span:first-child { color: var(--muted); }
 .specs li span:last-child { text-align: right; }
 .from-ag { font-family: var(--serif); font-style: italic; font-size: 26px; margin-bottom: 14px; }
-.ag-note { font-family: var(--serif); font-size: clamp(24px, 2.4vw, 32px); line-height: 1.3; }
+.ag { margin: 0; display: flex; flex-direction: column; gap: 18px; }
+.ag-note { margin: 0; font-family: var(--serif); font-size: clamp(24px, 2.4vw, 32px); line-height: 1.3; }
 .tbc { color: var(--muted); }
 
 /* ---------- story ---------- */
