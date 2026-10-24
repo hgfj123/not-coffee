@@ -93,7 +93,7 @@ def snippets():
         "tiles_shop": "".join(flavor_tile(f, square=True) for f in FLAVORS),
         "signup": SIGNUP,
         "bot_cards": "".join(
-            f'<a class="bot-card reveal" href="/flavors/{f["slug"]}"><img src="{bot(f["slug"])}" alt="Hand-drawn {esc(f["name"].lower())} botanical" loading="lazy"><span>{esc(f["name"])}</span></a>'
+            f'<a class="bot-card reveal" href="/flavors/{f["slug"]}" style="background:{f["colors"]["wash"]}"><img src="{bot(f["slug"])}" alt="Hand-drawn {esc(f["name"].lower())} botanical" loading="lazy"><span>{esc(f["name"])}</span></a>'
             for f in FLAVORS
         ),
         "botanical_still": '<div class="botanical-still">' + "".join(
@@ -129,7 +129,7 @@ def product_page(item):
                 ("Caffeine", caffeine), ("Brew", "Brewed, never from concentrate"),
                 ("Can", "12 fl oz slim"), ("Made", "Brewed &amp; Canned in the USA")]
     ag = esc(item["agNote"]) if item["agNote"] else placeholder(
-        "A line from AG about this one: where it was poured, who poured it, what it tastes like at home")
+        "A line about how this one was poured at home")
     cur = ' aria-current="page"'
     switch = "".join('<a href="/flavors/%s"%s>%s</a>' % (f["slug"], cur if f["slug"] == slug else "", esc(f["name"]))
                      for f in FLAVORS)
