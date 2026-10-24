@@ -338,6 +338,8 @@ em { font-style: italic; }
 .faq details[open] summary::after { transform: rotate(45deg); }
 .faq .answer { padding: 0 0 28px; max-width: 760px; font-size: 17px; line-height: 1.7; color: var(--ink-soft); }
 .faq .answer p + p { margin-top: 12px; }
+.faq-group { margin: 0 0 14px; }
+.faq + .faq-group { margin-top: clamp(48px, 6vw, 72px); }
 .answer-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
 
 /* ---------- forms ---------- */
