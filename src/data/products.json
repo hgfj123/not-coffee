@@ -8,14 +8,21 @@
       "first": "Jasmine",
       "second": "Rose",
       "tagline": "The one you pour for company.",
-      "notes": ["Jasmine blossom", "Rose petal", "Soft green tea"],
+      "notes": [
+        "Jasmine blossom",
+        "Rose petal",
+        "Soft green tea"
+      ],
       "description": "Green tea, jasmine blossom and a finish of rose, the way it's poured for guests across the Middle East, minus the sugar bowl that usually comes with it. Soft, floral, and made for sharing.",
-      "agNote": null,
+      "agNote": "When guests came over, this was the pot that came out first. Nobody asked if you wanted tea. It was just poured.",
       "tea": "Green tea, jasmine, rose",
       "caffeine": null,
       "price": null,
       "packLabel": "6-pack · 12 fl oz cans",
-      "colors": { "wash": "#F5DCE5", "deep": "#E9BFCF" }
+      "colors": {
+        "wash": "#F5DCE5",
+        "deep": "#E9BFCF"
+      }
     },
     {
       "slug": "moroccan-mint",
@@ -23,14 +30,21 @@
       "first": "Moroccan",
       "second": "Mint",
       "tagline": "The one for the hottest day of the year.",
-      "notes": ["Spearmint", "Gunpowder green", "Cool finish"],
+      "notes": [
+        "Spearmint",
+        "Gunpowder green",
+        "Cool finish"
+      ],
       "description": "Gunpowder green tea and spearmint, the way it is served across North Africa, except nobody stirred four spoons of sugar into it. Bracing, clean, and the most refreshing thing in the fridge.",
-      "agNote": null,
+      "agNote": "Mint went into the pot by the handful, never measured. The sugar sat on the side. Turns out we never needed it.",
       "tea": "Gunpowder green tea, spearmint",
       "caffeine": null,
       "price": null,
       "packLabel": "6-pack · 12 fl oz cans",
-      "colors": { "wash": "#D8ECD4", "deep": "#B9DDB3" }
+      "colors": {
+        "wash": "#D8ECD4",
+        "deep": "#B9DDB3"
+      }
     },
     {
       "slug": "earl-grey-cardamom",
@@ -38,14 +52,21 @@
       "first": "Earl Grey",
       "second": "Cardamom",
       "tagline": "The one for the 3pm slump.",
-      "notes": ["Bergamot", "Cardamom", "Black tea"],
+      "notes": [
+        "Bergamot",
+        "Cardamom",
+        "Black tea"
+      ],
       "description": "Earl Grey's bergamot, warmed with cardamom the way tea is spiced across the Gulf, minus the condensed milk and sugar. Bright, warming and steady, made for the middle of the afternoon.",
-      "agNote": null,
+      "agNote": "Around three o'clock, someone would crack a few cardamom pods into the pot, and the whole house would slow down.",
       "tea": "Earl Grey tea, bergamot, cardamom",
       "caffeine": null,
       "price": null,
       "packLabel": "6-pack · 12 fl oz cans",
-      "colors": { "wash": "#DDE2E5", "deep": "#C3CBD0" }
+      "colors": {
+        "wash": "#DDE2E5",
+        "deep": "#C3CBD0"
+      }
     }
   ]
 }
