@@ -421,3 +421,21 @@ body.locked { overflow: hidden; }
 .clip:hover .clip-play { opacity: 1; transform: scale(1.06); }
 .clip-meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 14px; }
 .clip-plat svg { width: 18px; height: 18px; display: block; color: var(--muted); }
+
+/* ---------- phone-only adjustments (tablets and up keep the full layout) ---------- */
+.sw-short { display: none; }
+@media (max-width: 699px) {
+  /* 1. hide the large NOT behind the hero cans */
+  .hero-not { display: none; }
+  /* 2. product tiles become a sideways swipe row */
+  .grid-tiles { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px;
+    margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter);
+    scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .grid-tiles::-webkit-scrollbar { display: none; }
+  .grid-tiles > .tile { flex: 0 0 72%; scroll-snap-align: start; min-width: 0; }
+  .grid-2 .tile-media { aspect-ratio: 4 / 5; }
+  /* 3. short flavor names in the switcher so all fit */
+  .switcher a { padding: 0 14px; }
+  .sw-full { display: none; }
+  .sw-short { display: inline; }
+}

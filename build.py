@@ -218,8 +218,10 @@ def product_page(item):
                 ("Can", "12 fl oz slim"), ("Made", "Brewed &amp; Canned in the USA")]
     ag = esc(item["agNote"]) if item["agNote"] else ""
     cur = ' aria-current="page"'
-    switch = "".join('<a href="/flavors/%s"%s>%s</a>' % (f["slug"], cur if f["slug"] == slug else "", esc(f["name"]))
-                     for f in FLAVORS)
+    switch = "".join(
+        '<a href="/flavors/%s"%s><span class="sw-full">%s</span><span class="sw-short" aria-hidden="true">%s</span></a>' % (
+            f["slug"], cur if f["slug"] == slug else "", esc(f["name"]), esc(f.get("shortName") or f["name"]))
+        for f in FLAVORS)
     rep = {
         "slug": slug,
         "floaters": "".join(f'<img class="floater {c}" src="{bot(slug)}" alt="" aria-hidden="true">'

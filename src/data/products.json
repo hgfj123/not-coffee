@@ -22,7 +22,8 @@
       "colors": {
         "wash": "#F5DCE5",
         "deep": "#E9BFCF"
-      }
+      },
+      "shortName": "Jasmine"
     },
     {
       "slug": "moroccan-mint",
@@ -44,7 +45,8 @@
       "colors": {
         "wash": "#D8ECD4",
         "deep": "#B9DDB3"
-      }
+      },
+      "shortName": "Mint"
     },
     {
       "slug": "earl-grey-cardamom",
@@ -66,7 +68,8 @@
       "colors": {
         "wash": "#DDE2E5",
         "deep": "#C3CBD0"
-      }
+      },
+      "shortName": "Earl Grey"
     }
   ]
 }
