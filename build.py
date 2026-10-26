@@ -25,11 +25,59 @@ CONFIG = {
     "instagram": "https://www.instagram.com/notcffee/",
     "tiktok": "https://www.tiktok.com/@notcffee",
     "year": "2026",
+    # Keep search engines away from the preview address. Set to False at launch.
+    "noindex": True,
 }
 
 DATA = json.loads((SRC / "data/products.json").read_text())
 CREATORS = json.loads((SRC / "data/creators.json").read_text()).get("videos", [])
 FLAVORS = DATA["flavors"]
+FACTS = json.loads((SRC / "data/facts.json").read_text())
+
+
+def fact(path):
+    """Look up a fact like 'shipping.delivery'. Returns None while it isn't filled in."""
+    cur = FACTS
+    for part in path.split("."):
+        cur = cur.get(part) if isinstance(cur, dict) else None
+    return cur or None
+
+
+CAFFEINE = [f for f in FLAVORS if f.get("caffeine")]
+
+
+def caffeine_text():
+    if not CAFFEINE:
+        return None
+    vals = {f["caffeine"] for f in CAFFEINE}
+    if len(vals) == 1 and len(CAFFEINE) == len(FLAVORS):
+        return esc(vals.pop())
+    return "; ".join(f'{esc(f["name"])}: {esc(f["caffeine"])}' for f in CAFFEINE)
+
+
+# Every hidden spot, so the build can remind us what's still missing.
+CONDITIONS = {
+    "caffeine": (bool(CAFFEINE), "Caffeine per can (homepage label card, flavor pages, FAQ)"),
+    "ingredients": (bool(fact("ingredients")), "Ingredient statement (flavor pages, Label tab)"),
+    "shipping": (any(fact("shipping." + k) for k in ["delivery", "free_shipping", "returns"]),
+                 "Shipping details (flavor pages Shipping tab, FAQ 'Do you ship?')"),
+    "shelf_life": (bool(fact("shelf_life")), "Shelf life (FAQ 'How long does it keep?')"),
+    "case_size": (bool(fact("wholesale.case_size")), "Wholesale case size (Work with us)"),
+    "minimum_order": (bool(fact("wholesale.minimum_order")), "Wholesale minimum order (Work with us)"),
+    "founded": (bool(fact("company.founded")), "Founding year (Work with us fact sheet)"),
+    "based_in": (bool(fact("company.based_in")), "City and state (Work with us fact sheet)"),
+}
+IF_RE = re.compile(r"<!--if:(\w+)-->(.*?)<!--/if:\1-->", re.S)
+
+
+def apply_conditions(text):
+    """Keep <!--if:key-->…<!--/if:key--> blocks only when that fact is filled in."""
+    def keep(m):
+        key = m.group(1)
+        if key not in CONDITIONS:
+            raise SystemExit(f"Unknown condition: {key}")
+        return m.group(2) if CONDITIONS[key][0] else ""
+    return IF_RE.sub(keep, text)
 
 
 def esc(s):
@@ -129,7 +177,14 @@ def snippets():
         ),
         "botanical_still": '<div class="botanical-still">' + "".join(
             f'<img src="{bot(f["slug"])}" alt="" loading="lazy">' for f in FLAVORS) + "</div>",
-                "caffeine_any": next((f["caffeine"] for f in FLAVORS if f["caffeine"]), None) or placeholder("mg per can"),
+                "caffeine_any": caffeine_text() or "",
+        "fact_ingredients": esc(fact("ingredients")),
+        "fact_shelf_life": esc(fact("shelf_life")),
+        "fact_case_size": esc(fact("wholesale.case_size")),
+        "fact_minimum_order": esc(fact("wholesale.minimum_order")),
+        "fact_founded": esc(fact("company.founded")),
+        "fact_based_in": esc(fact("company.based_in")),
+        "ship_summary": " ".join(esc(fact("shipping." + k)) for k in ["delivery", "free_shipping"] if fact("shipping." + k)),
     }
 
 
@@ -141,26 +196,27 @@ def spec_rows(rows):
 def label_rows(caffeine):
     rows = [("Serving size", "12 fl oz (355 mL)"), ("Calories", "0"), ("Total fat", "0g"),
             ("Sodium", "20mg"), ("Total carbohydrate", "0g"), ("Total sugars", "0g"),
-            ("Protein", "0g"), ("Potassium", "40mg"), ("Caffeine", caffeine)]
+            ("Protein", "0g"), ("Potassium", "40mg")]
+    if caffeine:
+        rows.append(("Caffeine", caffeine))
     return spec_rows(rows)
 
 
-SHIP_ROWS = spec_rows([
-    ("Delivery", placeholder("Shipping times")),
-    ("Free shipping", placeholder("Threshold")),
-    ("Returns", placeholder("Policy")),
-])
+SHIP_ROWS = spec_rows([(label, esc(fact("shipping." + key))) for key, label in
+                       [("delivery", "Delivery"), ("free_shipping", "Free shipping"), ("returns", "Returns")]
+                       if fact("shipping." + key)])
 
 
 def product_page(item):
     tpl = (SRC / "partials/product.html").read_text()
     slug = item["slug"]
-    caffeine = esc(item["caffeine"]) if item["caffeine"] else placeholder("mg per can")
-    tea_rows = [("The tea", esc(item["tea"])), ("Sweetener", "None, unsweetened"), ("Calories", "0"),
-                ("Caffeine", caffeine), ("Brew", "Brewed, never from concentrate"),
+    caffeine = esc(item["caffeine"]) if item["caffeine"] else None
+    tea_rows = [("The tea", esc(item["tea"])), ("Sweetener", "None, unsweetened"), ("Calories", "0")]
+    if caffeine:
+        tea_rows.append(("Caffeine", caffeine))
+    tea_rows += [("Brew", "Brewed, never from concentrate"),
                 ("Can", "12 fl oz slim"), ("Made", "Brewed &amp; Canned in the USA")]
-    ag = esc(item["agNote"]) if item["agNote"] else placeholder(
-        "A line about how this one was poured at home")
+    ag = esc(item["agNote"]) if item["agNote"] else ""
     cur = ' aria-current="page"'
     switch = "".join('<a href="/flavors/%s"%s>%s</a>' % (f["slug"], cur if f["slug"] == slug else "", esc(f["name"]))
                      for f in FLAVORS)
@@ -175,8 +231,9 @@ def product_page(item):
         "pack": esc(item["packLabel"]), "price": price_text(item["price"]),
         "price_cls": "" if isinstance(item["price"], (int, float)) else " tbc",
         "tea_rows": spec_rows(tea_rows), "label_rows": label_rows(caffeine), "ship_rows": SHIP_ROWS,
-        "ag": ag, "other_tiles": "".join(flavor_tile(f) for f in FLAVORS if f["slug"] != slug),
+        "ag": ag, "fact_ingredients": esc(fact("ingredients")), "other_tiles": "".join(flavor_tile(f) for f in FLAVORS if f["slug"] != slug),
     }
+    tpl = apply_conditions(tpl)
     for k, v in rep.items():
         tpl = tpl.replace("{{" + k + "}}", v)
     return tpl, f"{item['name']} Cold Tea | not coffee", f"{item['name']}: {item['description']}"
@@ -210,10 +267,11 @@ def read_page(path):
 
 def render(content, title, description, path, nav=None, head_extra=""):
     page = (SRC / "partials/layout.html").read_text()
-    reps = dict(CONFIG)
+    reps = {k: v for k, v in CONFIG.items() if isinstance(v, str)}
     reps.update({
         "title": esc(title), "description": esc(description), "path": path,
-        "content": content, "head_extra": head_extra, "version": VERSION,
+        "content": content, "version": VERSION,
+        "head_extra": ('<meta name="robots" content="noindex, nofollow">\n' if CONFIG.get("noindex") else "") + head_extra,
     })
     for key in ["shop", "story", "faq", "wholesale"]:
         reps["cur_" + key] = ' aria-current="page"' if nav == key else ""
@@ -266,6 +324,7 @@ def main():
     pages = []
     for p in sorted((SRC / "pages").glob("*.html")):
         meta, body = read_page(p)
+        body = apply_conditions(body)
         for k, v in snips.items():
             body = body.replace("{{" + k + "}}", v)
         path = meta.get("path", "/" + p.stem)
@@ -284,6 +343,15 @@ def main():
     (DIST / "sitemap.xml").write_text(
         f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
     (DIST / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {CONFIG['site_url']}/sitemap.xml\n")
+    waiting = [label for ok, label in CONDITIONS.values() if not ok]
+    if not any(f.get("price") for f in FLAVORS):
+        waiting.insert(0, "Prices (shown as 'Price coming soon')")
+    if waiting:
+        print("STILL WAITING ON (hidden on the site until filled in):")
+        for w in waiting:
+            print("   -", w)
+    if CONFIG.get("noindex"):
+        print("NOTE: search engines are blocked (CONFIG noindex). Turn off at launch.")
     print(f"Built {len(pages)} pages into {DIST}")
     for p in pages:
         print("  ", p)

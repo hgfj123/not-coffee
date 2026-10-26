@@ -1,0 +1,18 @@
+{
+  "_readme": "Facts that aren't final yet. Anything left as null is HIDDEN on the site (never shown as a blank or a bracket). Fill a value in, run `python3 build.py`, and every spot that uses it appears automatically. Caffeine and price live per flavor in products.json.",
+  "ingredients": null,
+  "shipping": {
+    "delivery": null,
+    "free_shipping": null,
+    "returns": null
+  },
+  "shelf_life": null,
+  "wholesale": {
+    "case_size": null,
+    "minimum_order": null
+  },
+  "company": {
+    "founded": null,
+    "based_in": null
+  }
+}

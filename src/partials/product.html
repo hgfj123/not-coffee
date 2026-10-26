@@ -37,7 +37,7 @@
   <div class="tabs" role="tablist" aria-label="Product details">
     <button type="button" class="tab" role="tab" id="t-tea" aria-controls="p-tea" aria-selected="true">The tea</button>
     <button type="button" class="tab" role="tab" id="t-label" aria-controls="p-label" aria-selected="false" tabindex="-1">The label</button>
-    <button type="button" class="tab" role="tab" id="t-ship" aria-controls="p-ship" aria-selected="false" tabindex="-1">Shipping</button>
+<!--if:shipping-->    <button type="button" class="tab" role="tab" id="t-ship" aria-controls="p-ship" aria-selected="false" tabindex="-1">Shipping</button><!--/if:shipping-->
   </div>
 
   <div class="tab-panel" id="p-tea" role="tabpanel" aria-labelledby="t-tea">
@@ -51,15 +51,15 @@
   <div class="tab-panel" id="p-label" role="tabpanel" aria-labelledby="t-label" hidden>
     <div>
       <h2 class="h3">Read the whole label. <em>It's short.</em></h2>
-      <p class="body" style="margin-top:14px">Ingredients: <span class="tbc">[Final ingredient statement]</span></p>
+<!--if:ingredients-->      <p class="body" style="margin-top:14px">Ingredients: {{fact_ingredients}}</p><!--/if:ingredients-->
     </div>
     <ul class="specs">{{label_rows}}</ul>
   </div>
 
-  <div class="tab-panel" id="p-ship" role="tabpanel" aria-labelledby="t-ship" hidden>
+<!--if:shipping-->  <div class="tab-panel" id="p-ship" role="tabpanel" aria-labelledby="t-ship" hidden>
     <div><h2 class="h3">Shipped cold-ready, <em>straight from the line.</em></h2></div>
     <ul class="specs">{{ship_rows}}</ul>
-  </div>
+  </div><!--/if:shipping-->
 </section>
 
 <section class="wrap-narrow" style="padding-bottom:clamp(80px,9vw,128px)">

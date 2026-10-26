@@ -32,10 +32,10 @@ nav: faq
       <summary>Is it sparkling or still?</summary>
       <div class="answer"><p>Still, the way tea should be.</p></div>
     </details>
-    <details>
+<!--if:caffeine-->    <details>
       <summary>How much caffeine is in a can?</summary>
       <div class="answer"><p>{{caffeine_any}} per 12 fl oz can.</p></div>
-    </details>
+    </details><!--/if:caffeine-->
     <details>
       <summary>Where is it made?</summary>
       <div class="answer"><p>Brewed and Canned in the USA.</p></div>
@@ -51,10 +51,10 @@ nav: faq
       <summary>Does it need to stay cold?</summary>
       <div class="answer"><p>It's happy on the shelf until you open it. Best served cold.</p></div>
     </details>
-    <details>
+<!--if:shelf_life-->    <details>
       <summary>How long does it keep?</summary>
-      <div class="answer"><p class="tbc">[Shelf life and storage guidance.]</p></div>
-    </details>
+      <div class="answer"><p>{{fact_shelf_life}}</p></div>
+    </details><!--/if:shelf_life-->
   </div>
   <h2 class="eyebrow faq-group">Getting it</h2>
   <div class="faq">
@@ -64,7 +64,7 @@ nav: faq
     </details>
     <details>
       <summary>Do you ship?</summary>
-      <div class="answer"><p>Yes. Order online and it ships straight to your door.</p><p class="tbc">[Delivery times and free-shipping threshold.]</p></div>
+      <div class="answer"><p>Yes. Order online and it ships straight to your door.</p><!--if:shipping--><p>{{ship_summary}}</p><!--/if:shipping--></div>
     </details>
     <details>
       <summary>Can I stock it in my store or café?</summary>
