@@ -1,0 +1,4 @@
+{
+  "_readme": "Creator videos shown under 'Poured by creators' on the Work with us page. The section stays hidden while this list is empty. Each entry: handle (without @), platform ('instagram' or 'tiktok'), url (link to the post), cover (image file in src/assets/img/creators/). Newest first.",
+  "videos": []
+}

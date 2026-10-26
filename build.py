@@ -28,6 +28,7 @@ CONFIG = {
 }
 
 DATA = json.loads((SRC / "data/products.json").read_text())
+CREATORS = json.loads((SRC / "data/creators.json").read_text()).get("videos", [])
 FLAVORS = DATA["flavors"]
 
 
@@ -87,8 +88,38 @@ SIGNUP = """
 # Swap this form for a Klaviyo (or similar) embed when email marketing is set up.
 
 
+ICON_IG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor"/></svg>'
+ICON_TT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 4c.4 2.6 2.2 4.4 5 4.6"/></svg>'
+
+
+def creator_videos():
+    """'Poured by creators' grid. Renders nothing until src/data/creators.json has videos."""
+    if not CREATORS:
+        return ""
+    tiles = []
+    for v in CREATORS:
+        plat = v.get("platform", "instagram").lower()
+        icon, plat_name = (ICON_TT, "TikTok") if plat == "tiktok" else (ICON_IG, "Instagram")
+        handle = esc(v["handle"].lstrip("@"))
+        tiles.append(
+            f'<a class="clip reveal" href="{esc(v["url"])}" target="_blank" rel="noopener">'
+            f'<span class="clip-media"><img src="/assets/img/creators/{esc(v["cover"])}" alt="Video by @{handle}" loading="lazy">'
+            f'<span class="clip-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span></span>'
+            f'<span class="clip-meta"><span>@{handle}</span><span class="clip-plat" title="{plat_name}">{icon}<span class="sr-only">on {plat_name}</span></span></span>'
+            "</a>")
+    return f"""
+<section class="wrap-narrow" style="padding-bottom:clamp(56px,7vw,96px)" aria-labelledby="clips-h">
+  <div class="section-head">
+    <h2 class="h2" id="clips-h">Poured <em>by creators.</em></h2>
+    <p class="body">Real people, real fridges. Tag @notcffee on Instagram or TikTok and you might end up here.</p>
+  </div>
+  <div class="clips">{"".join(tiles)}</div>
+</section>"""
+
+
 def snippets():
     return {
+        "creator_videos": creator_videos(),
         "tiles_lineup": "".join(flavor_tile(f) for f in FLAVORS),
         "tiles_shop": "".join(flavor_tile(f, square=True) for f in FLAVORS),
         "signup": SIGNUP,
