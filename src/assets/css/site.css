@@ -133,7 +133,10 @@ em { font-style: italic; }
 }
 
 /* ---------- home hero ---------- */
-.hero { position: relative; overflow: hidden; background: var(--stone); padding: clamp(56px, 7vw, 96px) 16px 0; text-align: center; }
+.hero { position: relative; overflow: hidden; isolation: isolate; background: var(--stone); padding: clamp(56px, 7vw, 96px) 16px 0; text-align: center; }
+.hero::before { content: ""; position: absolute; left: 0; right: 0; top: 46%; bottom: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(90deg, #9CCDA3 0%, #9CCDA3 16%, #E4A1B8 38%, #E4A1B8 62%, #A6B2BD 84%, #A6B2BD 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 38%); mask-image: linear-gradient(to bottom, transparent 0, #000 38%); }
 .hero-not { position: absolute; left: 50%; bottom: -.13em; transform: translateX(-50%); font-family: var(--mark); font-weight: 900; font-size: clamp(200px, 38vw, 600px); line-height: 1; letter-spacing: -.04em; color: #fff; white-space: nowrap; user-select: none; pointer-events: none; }
 .hero-copy { position: relative; display: flex; flex-direction: column; align-items: center; gap: 22px; }
 .hero-copy .lede { max-width: 520px; }
