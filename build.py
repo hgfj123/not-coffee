@@ -267,8 +267,8 @@ def read_page(path):
     return meta, raw
 
 
-def render(content, title, description, path, nav=None, head_extra=""):
-    page = (SRC / "partials/layout.html").read_text()
+def render(content, title, description, path, nav=None, head_extra="", layout="layout"):
+    page = (SRC / f"partials/{layout}.html").read_text()
     reps = {k: v for k, v in CONFIG.items() if isinstance(v, str)}
     reps.update({
         "title": esc(title), "description": esc(description), "path": path,
@@ -330,7 +330,8 @@ def main():
         for k, v in snips.items():
             body = body.replace("{{" + k + "}}", v)
         path = meta.get("path", "/" + p.stem)
-        write(path, render(body, meta["title"], meta["description"], path, meta.get("nav")))
+        write(path, render(body, meta["title"], meta["description"], path, meta.get("nav"),
+                           layout=meta.get("layout", "layout")))
         pages.append(path)
 
     for f in FLAVORS:
