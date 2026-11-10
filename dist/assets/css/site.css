@@ -465,3 +465,16 @@ body.bare { background: var(--stone); }
 .hello-links svg { width: 20px; height: 20px; }
 .hello-small { display: flex; gap: 20px; justify-content: center; font-size: 14px; }
 .hello-fine { margin-top: auto; font-size: 12px; color: var(--muted); }
+
+/* botanical intro on /hello (driven by assets/js/hello-intro.js) */
+.hello-intro { position: fixed; inset: 0; z-index: 50; background: var(--stone); overflow: hidden; cursor: pointer; }
+.hello-intro img { position: absolute; height: auto; will-change: transform, opacity; opacity: 0; }
+.hello-intro-skip { position: absolute; left: 0; right: 0; bottom: max(24px, env(safe-area-inset-bottom)); text-align: center; z-index: 1;
+  font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); pointer-events: none; }
+.intro .hello-cans img, .intro .hello-links, .intro .hello-small, .intro .hello-fine { animation: none; opacity: 0; }
+@keyframes fade-up { from { opacity: 0; translate: 0 10px; } to { opacity: 1; translate: 0 0; } }
+.intro-done .hello-cans img:nth-child(1) { animation-delay: .05s; }
+.intro-done .hello-cans img:nth-child(3) { animation-delay: .12s; }
+.intro-done .hello-links { animation: fade-up .5s var(--ease) .15s both; }
+.intro-done .hello-small { animation: fade-up .5s var(--ease) .22s both; }
+.intro-done .hello-fine { animation: fade-up .5s var(--ease) .28s both; }
