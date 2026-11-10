@@ -1,15 +1,11 @@
 /* not coffee: botanical intro for the QR links page (/hello).
-   Plays once per visit, can be tapped away, and never plays for people who
-   have "reduce motion" turned on. If anything goes wrong, the page simply shows. */
+   Plays every time the page loads or refreshes, can be tapped away, and never plays
+   for people who have "reduce motion" turned on. If anything goes wrong, the page simply shows. */
 (function () {
   'use strict';
   var root = document.documentElement;
-  var KEY = 'nc-hello-intro';
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var seen = false;
-  try { seen = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
-  if (reduce || seen || !document.body || !document.body.animate) return;
-  try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+  if (reduce || !document.body || !document.body.animate) return;
 
   var BOTS = ['/assets/img/botanical-moroccan-mint.webp',
               '/assets/img/botanical-jasmine-rose.webp',
