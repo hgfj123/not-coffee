@@ -173,6 +173,11 @@ em { font-style: italic; }
 .tile:hover .tile-media .bot { opacity: 1; }
 .tile:hover .tile-media .bot-a { transform: rotate(-20deg); }
 .tile:hover .tile-media .bot-b { transform: rotate(160deg); }
+/* every other tile mirrors: drawings top-right and bottom-left */
+.grid-tiles .tile:nth-child(even) .tile-media .bot-a { left: auto; right: -6%; transform: scaleX(-1) rotate(-20deg) translateY(10px); }
+.grid-tiles .tile:nth-child(even) .tile-media .bot-b { right: auto; left: -8%; transform: scaleX(-1) rotate(160deg) translateY(10px); }
+.grid-tiles .tile:nth-child(even):hover .tile-media .bot-a { transform: scaleX(-1) rotate(-20deg); }
+.grid-tiles .tile:nth-child(even):hover .tile-media .bot-b { transform: scaleX(-1) rotate(160deg); }
 .tile-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 2px 12px; }
 .tile-name { font-family: var(--serif); font-size: 23px; line-height: 1.2; }
 .tile-price { font-size: 14px; color: var(--muted); white-space: nowrap; }
