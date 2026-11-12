@@ -194,7 +194,7 @@ def spec_rows(rows):
 
 
 def label_rows(caffeine):
-    rows = [("Serving size", "12 fl oz (355 mL)"), ("Calories", "0"), ("Total fat", "0g"),
+    rows = [("Serving size", "11 fl oz (325 mL)"), ("Calories", "0"), ("Total fat", "0g"),
             ("Sodium", "20mg"), ("Total carbohydrate", "0g"), ("Total sugars", "0g"),
             ("Protein", "0g"), ("Potassium", "40mg")]
     if caffeine:
@@ -215,7 +215,7 @@ def product_page(item):
     if caffeine:
         tea_rows.append(("Caffeine", caffeine))
     tea_rows += [("Brew", "Brewed, never from concentrate"),
-                ("Can", "12 fl oz slim"), ("Made", "Brewed &amp; Canned in the USA")]
+                ("Can", "11 fl oz slim"), ("Made", "Brewed &amp; Canned in the USA")]
     ag = esc(item["agNote"]) if item["agNote"] else ""
     cur = ' aria-current="page"'
     switch = "".join(

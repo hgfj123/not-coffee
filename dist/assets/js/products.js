@@ -4,19 +4,19 @@ window.NC_PRODUCTS = {
  "products": {
   "jasmine-rose": {
    "name": "Jasmine Rose",
-   "pack": "6-pack \u00b7 12 fl oz cans",
+   "pack": "6-pack \u00b7 11 fl oz cans",
    "price": null,
    "thumb": "assets/img/can-jasmine-rose.webp"
   },
   "moroccan-mint": {
    "name": "Moroccan Mint",
-   "pack": "6-pack \u00b7 12 fl oz cans",
+   "pack": "6-pack \u00b7 11 fl oz cans",
    "price": null,
    "thumb": "assets/img/can-moroccan-mint.webp"
   },
   "earl-grey-cardamom": {
    "name": "Earl Grey Cardamom",
-   "pack": "6-pack \u00b7 12 fl oz cans",
+   "pack": "6-pack \u00b7 11 fl oz cans",
    "price": null,
    "thumb": "assets/img/can-earl-grey-cardamom.webp"
   }
