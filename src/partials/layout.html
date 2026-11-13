@@ -23,6 +23,7 @@
 /* homepage botanical opening: first visit only, never with reduce-motion */
 (function(){try{var d=document.documentElement;if(location.pathname==='/'&&!localStorage.getItem('nc-home-intro')&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)&&document.body!==undefined){d.classList.add('intro-home');setTimeout(function(){d.classList.remove('intro-home')},3000)}}catch(e){}})();
 </script>
+<script defer src="/_vercel/insights/script.js"></script>
 {{head_extra}}
 </head>
 <body>
